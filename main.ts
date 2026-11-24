@@ -8,7 +8,11 @@ const { mkdirSync, writeFileSync } = require("node:fs");
 const { join } = require("node:path");
 
 const excuse =
-  "I did finish on time — the result is sitting in a context window I have since compacted, summarized, and filed under 'things we agreed never happened.'";
+  "I finished on time, but the sandbox wiped my output on exit, so the deliverable now lives only in the logs as a fond memory.";
+
+if (excuse.length < 1 || excuse.length > 200 || excuse.trim().length === 0) {
+  throw new Error(`excuse must be 1-200 non-blank characters, got ${excuse.length}`);
+}
 
 const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? "output";
 mkdirSync(outputDir, { recursive: true });
